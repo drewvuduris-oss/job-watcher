@@ -7,7 +7,7 @@
 
   let status, rows;
   try {
-    [status, rows] = await Promise.all([JW.loadStatus(), JW.loadHistory()]);
+    [status, { rows }] = await Promise.all([JW.loadStatus(), JW.loadHistoryWithDfw()]);
   } catch (err) {
     JW.showError(err);
     return;
@@ -30,18 +30,23 @@
   const removedRows = rows.filter(r => r.removed_date === runDate);
   $("t-new-sub").textContent = `${fmt(newRows.filter(r => r.in_role).length)} in role`;
   $("t-removed-sub").textContent = `${fmt(removedRows.filter(r => r.in_role).length)} in role`;
+  const openDfw = rows.filter(r => r.status === "open" && r.in_dfw);
+  $("t-dfw").textContent = fmt(openDfw.length);
+  $("t-dfw-sub").innerHTML = `${fmt(openDfw.filter(r => r.in_role).length)} in role · <a href="browse.html">browse</a>`;
+  $("t-new-sub").textContent += ` · ${fmt(newRows.filter(r => r.in_dfw).length)} DFW`;
+  $("t-removed-sub").textContent += ` · ${fmt(removedRows.filter(r => r.in_dfw).length)} DFW`;
   const firstRunToday = rows.filter(r => r.first_seen === runDate && r.first_run).length;
 
   function renderList(listId, countId, roleBoxId, list, emptyText) {
-    const box = $(roleBoxId);
+    const box = $(roleBoxId), dfwBox = $(roleBoxId.replace("-role", "-dfw"));
     const draw = () => {
-      const shown = (box.checked ? list.filter(r => r.in_role) : list)
-        .slice()
-        .sort((a, b) => (b.in_role - a.in_role) || a.employer.localeCompare(b.employer) || a.title.localeCompare(b.title));
+      const shown = list
+        .filter(r => (!box.checked || r.in_role) && (!dfwBox.checked || r.in_dfw))
+        .sort((a, b) => (b.in_role - a.in_role) || (b.in_dfw - a.in_dfw) || a.employer.localeCompare(b.employer) || a.title.localeCompare(b.title));
       $(countId).textContent = `(${fmt(shown.length)})`;
       const ul = $(listId);
       if (!shown.length) {
-        ul.innerHTML = `<li class="empty">${esc(emptyText)}</li>`;
+        ul.innerHTML = `<li class="empty">${esc(list.length ? "No postings match these filters." : emptyText)}</li>`;
         return;
       }
       ul.innerHTML = shown.slice(0, LIMIT).map(r => `
@@ -49,12 +54,14 @@
           <div class="body">
             <a class="title" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a>
             ${r.in_role ? '<span class="tag role">In role</span>' : ""}
+            ${r.in_dfw ? '<span class="tag dfw">DFW</span>' : ""}
             <div class="meta">${esc(r.employer)}${r.location ? " · " + esc(r.location) : ""}</div>
           </div>
         </li>`).join("") +
         (shown.length > LIMIT ? `<li class="posting muted small">…and ${fmt(shown.length - LIMIT)} more. See <a href="browse.html">Browse</a>.</li>` : "");
     };
     box.addEventListener("change", draw);
+    dfwBox.addEventListener("change", draw);
     draw();
   }
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Today · Job Watcher</title>
-  <meta name="description" content="Daily watch of finance-analyst job postings at 21 employers.">
+  <meta name="description" content="Daily watch of finance-analyst job postings at 36 employers, with a Dallas/Fort Worth focus.">
   <meta name="theme-color" content="#2a78d6">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
@@ -26,17 +26,18 @@
     <div class="tile"><div class="label">Open postings</div><div class="value" id="t-open">–</div><div class="sub" id="t-open-sub"></div></div>
     <div class="tile"><div class="label">New today</div><div class="value" id="t-new">–</div><div class="sub" id="t-new-sub"></div></div>
     <div class="tile"><div class="label">Removed today</div><div class="value" id="t-removed">–</div><div class="sub" id="t-removed-sub"></div></div>
+    <div class="tile tile-dfw"><div class="label">Open in DFW</div><div class="value" id="t-dfw">–</div><div class="sub" id="t-dfw-sub"></div></div>
   </section>
 
   <div class="grid-2">
     <section class="card">
       <h2>New postings <span class="muted num" id="new-count"></span></h2>
-      <div class="controls"><label class="check"><input type="checkbox" id="new-role"> Finance-analyst roles only</label></div>
+      <div class="controls"><label class="check"><input type="checkbox" id="new-role"> Finance-analyst roles only</label><label class="check"><input type="checkbox" id="new-dfw"> DFW only</label></div>
       <ul class="postings" id="new-list"></ul>
     </section>
     <section class="card">
       <h2>Removed postings <span class="muted num" id="removed-count"></span></h2>
-      <div class="controls"><label class="check"><input type="checkbox" id="removed-role"> Finance-analyst roles only</label></div>
+      <div class="controls"><label class="check"><input type="checkbox" id="removed-role"> Finance-analyst roles only</label><label class="check"><input type="checkbox" id="removed-dfw"> DFW only</label></div>
       <ul class="postings" id="removed-list"></ul>
     </section>
   </div>

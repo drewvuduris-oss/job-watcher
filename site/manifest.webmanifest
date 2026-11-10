@@ -1,7 +1,7 @@
 {
   "name": "Job Watcher",
   "short_name": "Job Watcher",
-  "description": "Daily watch of finance-analyst job postings at 21 employers.",
+  "description": "Daily watch of finance-analyst job postings at 36 employers, with a Dallas/Fort Worth focus.",
   "id": "./",
   "start_url": "./index.html",
   "scope": "./",

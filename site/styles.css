@@ -21,6 +21,8 @@
   --bad: #c0282d;
   --bad-bg: #fbe5e5;
   --star: #d99100;
+  --dfw: #a63d10;
+  --dfw-bg: #fde6d9;
   --shadow: 0 1px 2px rgb(0 0 0 / .06);
 }
 @media (prefers-color-scheme: dark) {
@@ -43,6 +45,8 @@
     --bad: #f07a7a;
     --bad-bg: #3a1a1a;
     --star: #f2b84b;
+    --dfw: #f4a37f;
+    --dfw-bg: #3d2216;
     --shadow: none;
   }
 }
@@ -116,6 +120,7 @@ td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; }
 .badge.fail { color: var(--bad); background: var(--bad-bg); }
 .tag { display: inline-block; padding: 0 6px; border-radius: 4px; background: var(--surface-2); color: var(--text-2); font-size: .75rem; }
 .tag.role { background: var(--accent); color: #fff; }
+.tag.dfw { background: var(--dfw-bg); color: var(--dfw); font-weight: 600; }
 
 /* ---- posting lists */
 .postings { list-style: none; margin: 0; padding: 0; }

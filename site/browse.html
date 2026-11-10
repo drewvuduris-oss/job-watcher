@@ -18,7 +18,7 @@
 <main>
   <div class="page-head">
     <h1>Browse open postings</h1>
-    <p>Every posting still open as of the last run. Star a posting to keep it on your shortlist; the shortlist is saved in this browser.</p>
+    <p>Every posting still open as of the last run, starting with the Dallas/Fort Worth Metroplex. Star a posting to keep it on your shortlist; the shortlist is saved in this browser.</p>
   </div>
 
   <section class="card">
@@ -28,6 +28,13 @@
         <div class="seg" role="group" aria-label="Which postings">
           <button type="button" id="mode-role" aria-pressed="true">My role</button>
           <button type="button" id="mode-all" aria-pressed="false">All postings</button>
+        </div>
+      </div>
+      <div class="control">
+        <span>Region</span>
+        <div class="seg" role="group" aria-label="Which region">
+          <button type="button" id="region-dfw" aria-pressed="true">DFW Metroplex</button>
+          <button type="button" id="region-all" aria-pressed="false">Anywhere</button>
         </div>
       </div>
       <label class="control">Search titles
@@ -60,7 +67,7 @@
       <button type="button" class="btn" id="reset">Reset</button>
     </div>
     <div class="result-count" id="count" aria-live="polite">Loading…</div>
-    <p class="muted small">Days open counts from the first day the watcher saw a posting. Postings marked “+” were already open when watching began, so they have been open at least that long.</p>
+    <p class="muted small">Days open counts from the first day the watcher saw a posting. Postings marked “+” were already open when watching began, so they have been open at least that long. DFW means the location names a Metroplex city with TX/Texas (<a href="dfw.json">city list</a>); postings listed only as “2 Locations” or “Remote” are not counted as DFW.</p>
     <ul class="postings" id="list"></ul>
     <div style="text-align:center;margin-top:12px"><button type="button" class="btn" id="more" hidden>Show more</button></div>
   </section>

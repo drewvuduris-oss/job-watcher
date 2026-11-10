@@ -7,7 +7,7 @@
 
   let rows;
   try {
-    rows = await JW.loadHistory();
+    ({ rows } = await JW.loadHistoryWithDfw());
   } catch (err) {
     JW.showError(err);
     $("count").textContent = "";
@@ -18,7 +18,7 @@
   const open = rows.filter(r => r.status === "open");
   for (const r of open) r.days_open = daysBetween(r.first_seen, lastRun);
 
-  const state = { role: true, shown: PAGE };
+  const state = { role: true, dfw: true, shown: PAGE };
 
   // employer and location choices come from the open postings
   const employers = [...new Set(open.map(r => r.employer))].sort();
@@ -37,6 +37,7 @@
     const saved = shortlist.all();
     const out = open.filter(r =>
       (!state.role || r.in_role) &&
+      (!state.dfw || r.in_dfw) &&
       (!q || r.title.toLowerCase().includes(q)) &&
       (!emp || r.employer === emp) &&
       (!loc || r.location.toLowerCase().includes(loc)) &&
@@ -58,6 +59,7 @@
         <div class="body">
           <a class="title" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a>
           ${r.in_role ? '<span class="tag role">In role</span>' : ""}
+          ${r.in_dfw ? '<span class="tag dfw">DFW</span>' : ""}
           <div class="meta">${esc(r.employer)}${r.location ? " · " + esc(r.location) : ""}${r.department ? " · " + esc(r.department) : ""}</div>
           <a class="apply" href="${esc(r.url)}" target="_blank" rel="noopener">Apply ↗</a>
         </div>
@@ -68,7 +70,7 @@
   function render() {
     const list = filtered();
     $("count").textContent = `${fmt(list.length)} open posting${list.length === 1 ? "" : "s"}` +
-      (state.role ? " in finance-analyst roles" : "") + ` · last run ${lastRun}`;
+      (state.role ? " in finance-analyst roles" : "") + (state.dfw ? " in the DFW Metroplex" : "") + ` · last run ${lastRun}`;
     $("list").innerHTML = list.length
       ? list.slice(0, state.shown).map(item).join("")
       : '<li class="empty">No open postings match these filters.</li>';
@@ -85,6 +87,16 @@
     render();
   }
 
+  function setRegion(dfw) {
+    state.dfw = dfw;
+    $("region-dfw").setAttribute("aria-pressed", dfw);
+    $("region-all").setAttribute("aria-pressed", !dfw);
+    state.shown = PAGE;
+    render();
+  }
+
+  $("region-dfw").addEventListener("click", () => setRegion(true));
+  $("region-all").addEventListener("click", () => setRegion(false));
   $("mode-role").addEventListener("click", () => setRole(true));
   $("mode-all").addEventListener("click", () => setRole(false));
   for (const id of ["q", "employer", "location", "days", "sort", "starred"]) {
@@ -95,6 +107,9 @@
     for (const id of ["q", "employer", "location", "days"]) $(id).value = "";
     $("sort").value = "desc";
     $("starred").checked = false;
+    state.dfw = true;
+    $("region-dfw").setAttribute("aria-pressed", true);
+    $("region-all").setAttribute("aria-pressed", false);
     setRole(true);
   });
   $("list").addEventListener("click", e => {

@@ -4,8 +4,9 @@
 [![Daily run](https://github.com/drewvuduris-oss/job-watcher/actions/workflows/daily.yml/badge.svg)](https://github.com/drewvuduris-oss/job-watcher/actions/workflows/daily.yml)
 
 A tool that watches the job market for **finance-analyst roles** (financial analyst, FP&A,
-strategic/corporate finance, treasury, investment and credit analyst). Once a day GitHub
-Actions pulls every open posting from 21 employers' job boards, compares them with the day
+strategic/corporate finance, treasury, investment and credit analyst), with a focus on the
+**Dallas/Fort Worth Metroplex**. Once a day GitHub Actions pulls every open posting from 36
+employers' job boards (15 of them headquartered in DFW), compares them with the day
 before, records what is new and what is gone, opens a GitHub Issue with the changes, and
 publishes the result to a website.
 
@@ -24,6 +25,20 @@ hosts it — no login, no HTML scraping. All postings are kept, not only those i
 | `fidelity` | Fidelity Investments | Workday | `fmr.wd1.myworkdayjobs.com/wday/cxs/fmr/FidelityCareers/jobs` |
 | `mastercard` | Mastercard | Workday | `mastercard.wd1.myworkdayjobs.com/wday/cxs/mastercard/CorporateCareers/jobs` |
 | `statestreet` | State Street | Workday | `statestreet.wd1.myworkdayjobs.com/wday/cxs/statestreet/Global/jobs` |
+| `att` | AT&T (Dallas) | Workday | `att.wd1.myworkdayjobs.com/wday/cxs/att/ATTGeneral/jobs` |
+| `alcon` | Alcon (Fort Worth) | Workday | `alcon.wd5.myworkdayjobs.com/wday/cxs/alcon/careers_alcon/jobs` |
+| `alkami` | Alkami Technology (Plano) | Workday | `alkami.wd12.myworkdayjobs.com/wday/cxs/alkami/Alkami/jobs` |
+| `atmos` | Atmos Energy (Dallas) | Workday | `atmosenergy.wd108.myworkdayjobs.com/wday/cxs/atmosenergy/External_Career_Site/jobs` |
+| `goosehead` | Goosehead Insurance (Westlake) | Workday | `goosehead.wd503.myworkdayjobs.com/wday/cxs/goosehead/Careers/jobs` |
+| `kimberlyclark` | Kimberly-Clark (Irving) | Workday | `kimberlyclark.wd1.myworkdayjobs.com/wday/cxs/kimberlyclark/GLOBAL/jobs` |
+| `mckesson` | McKesson (Irving) | Workday | `mckesson.wd3.myworkdayjobs.com/wday/cxs/mckesson/External_Careers/jobs` |
+| `sabre` | Sabre (Southlake) | Workday | `sabre.wd1.myworkdayjobs.com/wday/cxs/sabre/SabreJobs/jobs` |
+| `texascapital` | Texas Capital (Dallas) | Workday | `texascapitalbank.wd12.myworkdayjobs.com/wday/cxs/texascapitalbank/Careers/jobs` |
+| `toyota` | Toyota North America (Plano) | Workday | `toyota.wd503.myworkdayjobs.com/wday/cxs/toyota/TMNA/jobs` |
+| `vistra` | Vistra (Irving) | Workday | `vst.wd5.myworkdayjobs.com/wday/cxs/vst/vistra_careers/jobs` |
+| `vizient` | Vizient (Irving) | Workday | `vizient.wd1.myworkdayjobs.com/wday/cxs/vizient/vizient_careers/jobs` |
+| `ti` | Texas Instruments (Dallas) | Oracle Recruiting Cloud | `edbz.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions` (site `CX`) |
+| `tenet` | Tenet Healthcare (Dallas) | Oracle Recruiting Cloud | `eodr.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions` (site `CX_1001`) |
 | `affirm` | Affirm | Greenhouse | `boards-api.greenhouse.io/v1/boards/affirm/jobs` |
 | `brex` | Brex | Greenhouse | `boards-api.greenhouse.io/v1/boards/brex/jobs` |
 | `carta` | Carta | Greenhouse | `boards-api.greenhouse.io/v1/boards/carta/jobs` |
@@ -35,6 +50,7 @@ hosts it — no login, no HTML scraping. All postings are kept, not only those i
 | `stripe` | Stripe | Greenhouse | `boards-api.greenhouse.io/v1/boards/stripe/jobs` |
 | `toast` | Toast | Greenhouse | `boards-api.greenhouse.io/v1/boards/toast/jobs` |
 | `palantir` | Palantir | Lever | `api.lever.co/v0/postings/palantir?mode=json` |
+| `matchgroup` | Match Group (Dallas) | Lever | `api.lever.co/v0/postings/matchgroup?mode=json` |
 | `plaid` | Plaid | Ashby | `api.ashbyhq.com/posting-api/job-board/plaid` |
 | `ramp` | Ramp | Ashby | `api.ashbyhq.com/posting-api/job-board/ramp` |
 | `servicenow` | ServiceNow | SmartRecruiters | `api.smartrecruiters.com/v1/companies/ServiceNow/postings` |
@@ -42,10 +58,13 @@ hosts it — no login, no HTML scraping. All postings are kept, not only those i
 
 **Search terms:** no board currently returns more than 5,000 postings, so every board is
 requested in full with no search term. (A board over the limit would get a `search` key in
-`job_watcher/sources.py`, sent as Workday's `searchText` or SmartRecruiters' `q`, and listed here.)
+`job_watcher/sources.py`, sent as Workday's `searchText`, SmartRecruiters' `q` or Oracle's
+`keyword`, and listed here.) The largest board is Tenet Healthcare at about 3,000 postings.
 
 Walmart, J.B. Hunt, Dillard's and Wells Fargo were tried first; their Workday boards reject
-anonymous requests (HTTP 422), so they were replaced.
+anonymous requests (HTTP 422), so they were replaced. DFW employers on systems with no public
+JSON board (American Airlines, Southwest, Charles Schwab on iCIMS, D.R. Horton on Taleo, Keurig
+Dr Pepper on Eightfold, among others) are left out.
 
 What each source provides: Workday gives no department or absolute posted date (only
 "Posted 3 Days Ago"), so those columns are empty for Workday rows. Greenhouse department
@@ -64,6 +83,17 @@ and does not match the exclude pattern (case-insensitive; see `job_watcher/roles
 * **Exclude** senior leadership: director, vice president, VP/SVP/EVP, head of, chief,
   managing director.
 
+## DFW rule
+
+A posting is in the **Dallas/Fort Worth Metroplex** when its location names a Metroplex city
+(Dallas, Fort Worth, Arlington, Plano, Irving, Frisco, McKinney, Richardson, Westlake, Southlake
+and ~80 more) together with `TX` or `Texas`, or names a place that is unambiguous on its own
+("Fort Worth", "DFW", "Dallas-Fort Worth", "Las Colinas", "North Dallas", "Southlake"). The list
+is `site/dfw.json`; the browser and `job_watcher/regions.py` both apply it, so the site and the
+daily issue agree. "Dallas" with no state is not counted (there is a Dallas, GA), nor are
+postings listed only as "2 Locations" or "Remote". The rule is a view on the data: it does not
+change `history.csv`, whose columns are fixed.
+
 ## How it works
 
 Each daily run (`.github/workflows/daily.yml`):
@@ -76,7 +106,7 @@ Each daily run (`.github/workflows/daily.yml`):
    build is byte-identical).
 3. Writes `data/status.json`.
 4. Opens a GitHub Issue titled with the date (label `daily-report`) listing new and removed
-   postings with links, and closes the previous day's issue. It is opened even when nothing
+   postings with links (⭐ in role, 📍 in DFW, both listed first), and closes the previous day's issue. It is opened even when nothing
    changed.
 5. Commits the data, then redeploys the site to GitHub Pages.
 
@@ -124,14 +154,16 @@ uv run python -m http.server 8000 -d _site   # open http://localhost:8000
 
 ## Site
 
-* **Today** (`index.html`) — last run time, status of every source, the four counts and the
-  lists of new and removed postings.
-* **Browse** (`browse.html`) — open postings: role/all switch (role is the default), filters
+* **Today** (`index.html`) — last run time, status of every source, the four counts plus open
+  postings in DFW, and the lists of new and removed postings (filterable to role and DFW).
+* **Browse** (`browse.html`) — open postings: role/all switch (role is the default), a
+  DFW Metroplex / anywhere switch (DFW is the default), filters
   for employer, location and days open, title search, sort by first seen, apply links, and a
   ★ shortlist saved in the browser's `localStorage`.
 * **Market** (`market.html`) — six findings computed in the browser from `history.csv`:
   new postings per day (all and in role), removed per day, open postings per employer,
-  median days open, share removed within seven days, and top locations.
+  median days open, share removed within seven days, top locations, and a seventh section on
+  the DFW Metroplex (open postings by employer and by city).
 
 The site is an installable app (web manifest + service worker). The service worker fetches
 pages and data from the network when online and serves the last saved copies when offline.
@@ -140,13 +172,15 @@ pages and data from the network when online and serves the last saved copies whe
 
 | Path | What it does |
 |---|---|
-| `job_watcher/sources.py` | Watch list; fetch and normalize functions for Workday, Greenhouse, Lever, Ashby and SmartRecruiters |
+| `job_watcher/sources.py` | Watch list; fetch and normalize functions for Workday, Oracle Recruiting Cloud, Greenhouse, Lever, Ashby and SmartRecruiters |
 | `job_watcher/roles.py` | The title rule (`in_role`) |
+| `job_watcher/regions.py` | The DFW location rule (used to mark DFW postings in the daily issue) |
 | `job_watcher/history.py` | Reads/writes raw files; builds `data/history.csv` from them (`python -m job_watcher.history`) |
 | `job_watcher/issues.py` | Writes the daily issue and opens/updates/closes issues via the GitHub API |
 | `job_watcher/run.py` | The daily pipeline (fetch → raw files → history → status → issue) |
 | `tests/test_sources.py` | Conversion of each ATS to the common columns |
 | `tests/test_roles.py` | The title rule |
+| `tests/test_regions.py` | The DFW location rule |
 | `tests/test_history.py` | First-seen, last-seen, removed and re-open logic; build from raw files is reproducible |
 | `.github/workflows/daily.yml` | Scheduled daily run: tests, pipeline, commit, deploy |
 | `.github/workflows/tests.yml` | Runs pytest on every push |
@@ -160,6 +194,7 @@ pages and data from the network when online and serves the last saved copies whe
 | `site/market.html`, `site/market.js` | Market page |
 | `site/common.js` | Shared navigation bar, data loading, date helpers, shortlist, service-worker registration |
 | `site/styles.css` | Shared fonts and colors (light and dark) |
+| `site/dfw.json` | The DFW city list, shared by the site and `regions.py` |
 | `site/sw.js` | Service worker (network first, cache fallback) |
 | `site/manifest.webmanifest`, `site/icons/` | Web app manifest and icons |
 | `site/vendor/` | Chart.js 4.4.1 and PapaParse 5.4.1, kept locally so the site works offline |

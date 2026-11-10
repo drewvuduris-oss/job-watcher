@@ -9,15 +9,17 @@
  *  5 removed <= 7d    first_run false and first_seen <= last run - 7 days:
  *                     share with removed_date - first_seen <= 7
  *  6 top locations    status == open, grouped by location
+ *  7 DFW Metroplex    status == open and the location passes the DFW rule (dfw.json),
+ *                     by employer and by city
  * "Last run" is the latest last_seen date in the history.
  */
 (async function () {
   "use strict";
   const { esc, fmt, pct, median, countBy, daysBetween, addDays, dateRange, shortDate, cssVar } = JW;
 
-  let rows;
+  let rows, dfw;
   try {
-    rows = await JW.loadHistory();
+    ({ rows, dfw } = await JW.loadHistoryWithDfw());
   } catch (err) {
     JW.showError(err);
     return;
@@ -250,5 +252,38 @@
       data: { labels: top.map(x => x[0]), datasets: [{ label: "Open postings", data: top.map(x => x[1]), ...barStyle(C1), maxBarThickness: 18 }] },
       options: { indexAxis: "y", scales: { x: intAxis("Open postings"), y: { grid: { display: false } } } },
     });
+  }
+  // ------------------------------------------------------------------ 7. Dallas/Fort Worth Metroplex
+  {
+    const openDfw = open.filter(r => r.in_dfw);
+    const roleDfw = openDfw.filter(r => r.in_role);
+    const byEmp = [...countBy(openDfw, "employer").entries()].sort((a, b) => b[1] - a[1]);
+    const roleByEmp = countBy(roleDfw, "employer");
+    const byCity = [...countBy(openDfw, r => dfw.cityOf(r.location)).entries()].sort((a, b) => b[1] - a[1]);
+    const newDfw = tracked.filter(r => r.in_dfw).length;
+    const charts = section({
+      heading: `${fmt(openDfw.length)} open postings are in the Dallas/Fort Worth Metroplex – ${fmt(roleDfw.length)} in finance-analyst roles`,
+      text: `That is ${pct(openDfw.length / Math.max(open.length, 1), 1)} of all open postings. ` +
+        `${esc(byEmp[0]?.[0] || "–")} lists the most DFW postings (${fmt(byEmp[0]?.[1] || 0)}), and ${esc(byCity[0]?.[0] || "–")} is the busiest city (${fmt(byCity[0]?.[1] || 0)}). ` +
+        `A posting counts as DFW when its location names a Metroplex city together with TX or Texas (the <a href="dfw.json">city list</a>); postings listed only as “N Locations” or “Remote” are not counted. ` +
+        `Since watching began, ${fmt(newDfw)} new DFW postings have appeared.`,
+      table: htmlTable(["Employer", "Open in DFW", "In role"], byEmp.map(([e, c]) => [e, c, roleByEmp.get(e) || 0])) +
+        htmlTable(["City", "Open in DFW"], byCity),
+      empty: openDfw.length ? "" : "No open postings in the Metroplex yet.",
+    });
+    if (openDfw.length) {
+      charts.classList.add("grid-2");
+      const topEmp = byEmp.slice(0, 15), topCity = byCity.slice(0, 15);
+      new Chart(canvas(charts, { tall: true, label: "By employer" }), {
+        type: "bar",
+        data: { labels: topEmp.map(x => x[0]), datasets: [{ label: "Open in DFW", data: topEmp.map(x => x[1]), ...barStyle(C1), maxBarThickness: 18 }] },
+        options: { indexAxis: "y", scales: { x: intAxis("Open postings"), y: { grid: { display: false } } } },
+      });
+      new Chart(canvas(charts, { tall: true, label: "By city" }), {
+        type: "bar",
+        data: { labels: topCity.map(x => x[0]), datasets: [{ label: "Open in DFW", data: topCity.map(x => x[1]), ...barStyle(C1), maxBarThickness: 18 }] },
+        options: { indexAxis: "y", scales: { x: intAxis("Open postings"), y: { grid: { display: false } } } },
+      });
+    }
   }
 })();

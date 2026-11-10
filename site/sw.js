@@ -1,11 +1,11 @@
 /* Service worker: network first, cache as fallback.
  * Online, every page and data file comes from the network (and the copy is saved).
  * Offline, the last saved copy is served, so the site opens with the last data it loaded. */
-const CACHE = "job-watcher-v1";
+const CACHE = "job-watcher-v2";
 const SHELL = [
   "./", "index.html", "browse.html", "market.html",
   "styles.css", "common.js", "today.js", "browse.js", "market.js",
-  "vendor/papaparse.min.js", "vendor/chart.umd.min.js",
+  "vendor/papaparse.min.js", "vendor/chart.umd.min.js", "dfw.json",
   "manifest.webmanifest", "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png",
   "data/status.json", "data/history.csv",
 ];

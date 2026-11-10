@@ -53,6 +53,31 @@
     }));
   }
 
+  // ------------------------------------------------------------------ DFW rule (same list and logic as job_watcher/regions.py)
+  const reEscape = s => s.replace(/[.*+?^${}()|[\]\\\-]/g, "\\$&").replace(/ /g, "[\\s\\-]+");
+  const alternation = names => [...names].sort((a, b) => b.length - a.length).map(reEscape).join("|");
+
+  async function loadDfw() {
+    const spec = JSON.parse(await fetchText("dfw.json"));
+    const city = new RegExp(`(?<![A-Za-z])(${alternation(spec.cities)})(?![A-Za-z])`, "i");
+    const standalone = new RegExp(`(?<![A-Za-z])(${alternation(spec.standalone)})(?![A-Za-z])`, "i");
+    const texas = /(?<![A-Za-z])(TX|[Tt][Ee][Xx][Aa][Ss])(?![A-Za-z])/;
+    const test = loc => !!loc && (standalone.test(loc) || (city.test(loc) && texas.test(loc)));
+    const cityOf = loc => {
+      if (/fort[\s\-]+worth|ft\.?\s+worth/i.test(loc)) return "Fort Worth";
+      const m = loc.match(city);
+      return m ? m[1].replace(/\s+/g, " ").replace(/^\w/, c => c.toUpperCase()) : "Dallas–Fort Worth (unspecified)";
+    };
+    return { test, cityOf, region: spec.region };
+  }
+
+  /** History rows with an `in_dfw` flag added. */
+  async function loadHistoryWithDfw() {
+    const [rows, dfw] = await Promise.all([loadHistory(), loadDfw()]);
+    for (const r of rows) r.in_dfw = dfw.test(r.location);
+    return { rows, dfw };
+  }
+
   // ------------------------------------------------------------------ dates (UTC 'YYYY-MM-DD')
   const DAY = 86400000;
   const toMs = d => Date.UTC(+d.slice(0, 4), +d.slice(5, 7) - 1, +d.slice(8, 10));
@@ -115,7 +140,7 @@
   document.addEventListener("DOMContentLoaded", renderNav);
 
   window.JW = {
-    loadStatus, loadHistory, daysBetween, addDays, dateRange, maxDate, shortDate,
+    loadStatus, loadHistory, loadDfw, loadHistoryWithDfw, daysBetween, addDays, dateRange, maxDate, shortDate,
     esc, fmt, pct, median, countBy, cssVar, showError, shortlist,
   };
 })();

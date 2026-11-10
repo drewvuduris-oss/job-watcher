@@ -42,6 +42,22 @@ SOURCES: list[dict] = [
     {"name": "fidelity", "employer": "Fidelity Investments", "ats": "workday", "tenant": "fmr", "host": "wd1", "site": "FidelityCareers"},
     {"name": "mastercard", "employer": "Mastercard", "ats": "workday", "tenant": "mastercard", "host": "wd1", "site": "CorporateCareers"},
     {"name": "statestreet", "employer": "State Street", "ats": "workday", "tenant": "statestreet", "host": "wd1", "site": "Global"},
+    # Workday - Dallas/Fort Worth headquarters
+    {"name": "att", "employer": "AT&T", "ats": "workday", "tenant": "att", "host": "wd1", "site": "ATTGeneral"},
+    {"name": "alcon", "employer": "Alcon", "ats": "workday", "tenant": "alcon", "host": "wd5", "site": "careers_alcon"},
+    {"name": "alkami", "employer": "Alkami Technology", "ats": "workday", "tenant": "alkami", "host": "wd12", "site": "Alkami"},
+    {"name": "atmos", "employer": "Atmos Energy", "ats": "workday", "tenant": "atmosenergy", "host": "wd108", "site": "External_Career_Site"},
+    {"name": "goosehead", "employer": "Goosehead Insurance", "ats": "workday", "tenant": "goosehead", "host": "wd503", "site": "Careers"},
+    {"name": "kimberlyclark", "employer": "Kimberly-Clark", "ats": "workday", "tenant": "kimberlyclark", "host": "wd1", "site": "GLOBAL"},
+    {"name": "mckesson", "employer": "McKesson", "ats": "workday", "tenant": "mckesson", "host": "wd3", "site": "External_Careers"},
+    {"name": "sabre", "employer": "Sabre", "ats": "workday", "tenant": "sabre", "host": "wd1", "site": "SabreJobs"},
+    {"name": "texascapital", "employer": "Texas Capital", "ats": "workday", "tenant": "texascapitalbank", "host": "wd12", "site": "Careers"},
+    {"name": "toyota", "employer": "Toyota North America", "ats": "workday", "tenant": "toyota", "host": "wd503", "site": "TMNA"},
+    {"name": "vistra", "employer": "Vistra", "ats": "workday", "tenant": "vst", "host": "wd5", "site": "vistra_careers"},
+    {"name": "vizient", "employer": "Vizient", "ats": "workday", "tenant": "vizient", "host": "wd1", "site": "vizient_careers"},
+    # Oracle Recruiting Cloud - Dallas headquarters
+    {"name": "ti", "employer": "Texas Instruments", "ats": "oracle", "host": "edbz.fa.us2.oraclecloud.com", "site": "CX"},
+    {"name": "tenet", "employer": "Tenet Healthcare", "ats": "oracle", "host": "eodr.fa.us2.oraclecloud.com", "site": "CX_1001"},
     # Greenhouse
     {"name": "affirm", "employer": "Affirm", "ats": "greenhouse", "board": "affirm"},
     {"name": "brex", "employer": "Brex", "ats": "greenhouse", "board": "brex"},
@@ -55,6 +71,7 @@ SOURCES: list[dict] = [
     {"name": "toast", "employer": "Toast", "ats": "greenhouse", "board": "toast"},
     # Lever
     {"name": "palantir", "employer": "Palantir", "ats": "lever", "board": "palantir"},
+    {"name": "matchgroup", "employer": "Match Group", "ats": "lever", "board": "matchgroup"},
     # Ashby
     {"name": "plaid", "employer": "Plaid", "ats": "ashby", "board": "plaid"},
     {"name": "ramp", "employer": "Ramp", "ats": "ashby", "board": "ramp"},
@@ -288,6 +305,46 @@ def normalize_smartrecruiters(cfg: dict, payload: dict) -> list[dict]:
     return rows
 
 
+# --------------------------------------------------------------------------- Oracle Recruiting Cloud
+
+ORACLE_PAGE = 200  # the largest page the CandidateExperience API returns
+
+
+def fetch_oracle(cfg: dict) -> dict:
+    url = f"https://{cfg['host']}/hcmRestApi/resources/latest/recruitingCEJobRequisitions"
+    pages, offset = [], 0
+    while True:
+        finder = f"findReqs;siteNumber={cfg['site']},limit={ORACLE_PAGE},offset={offset},sortBy=POSTING_DATES_DESC"
+        if cfg.get("search"):
+            finder += f',keyword="{cfg["search"]}"'
+        page = _request("GET", url, params={"onlyData": "true", "expand": "requisitionList.secondaryLocations", "finder": finder})
+        pages.append(page)
+        item = (page.get("items") or [{}])[0]
+        reqs = item.get("requisitionList") or []
+        offset += ORACLE_PAGE
+        if not reqs or offset >= int(item.get("TotalJobsCount") or 0):
+            break
+        time.sleep(0.25)
+    return {"pages": pages}
+
+
+def normalize_oracle(cfg: dict, payload: dict) -> list[dict]:
+    rows = []
+    for page in payload.get("pages", []):
+        item = (page.get("items") or [{}])[0]
+        for job in item.get("requisitionList") or []:
+            rows.append(_row(
+                cfg,
+                source_id=job.get("Id"),
+                title=job.get("Title"),
+                location=job.get("PrimaryLocation"),
+                department=job.get("Department") or job.get("Organization") or job.get("JobFamily"),
+                posted_date=iso_to_utc_date(job.get("PostedDate")),
+                url=f"https://{cfg['host']}/hcmUI/CandidateExperience/en/sites/{cfg['site']}/job/{job.get('Id')}",
+            ))
+    return rows
+
+
 # --------------------------------------------------------------------------- dispatch
 
 FETCHERS = {
@@ -296,6 +353,7 @@ FETCHERS = {
     "lever": fetch_lever,
     "ashby": fetch_ashby,
     "smartrecruiters": fetch_smartrecruiters,
+    "oracle": fetch_oracle,
 }
 NORMALIZERS = {
     "workday": normalize_workday,
@@ -303,6 +361,7 @@ NORMALIZERS = {
     "lever": normalize_lever,
     "ashby": normalize_ashby,
     "smartrecruiters": normalize_smartrecruiters,
+    "oracle": normalize_oracle,
 }
 
 

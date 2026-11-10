@@ -10,6 +10,8 @@ import os
 
 import requests
 
+from .regions import in_dfw
+
 LABEL = "daily-report"
 API = "https://api.github.com"
 MAX_BODY = 60000  # GitHub rejects issue bodies over 65,536 characters
@@ -17,14 +19,16 @@ MAX_BODY = 60000  # GitHub rejects issue bodies over 65,536 characters
 
 def _line(rec: dict) -> str:
     star = "⭐ " if str(rec.get("in_role")).lower() == "true" else ""
+    star += "📍 " if in_dfw(rec.get("location", "")) else ""
     where = " · ".join(x for x in (rec.get("employer"), rec.get("location")) if x)
     title = (rec.get("title") or "(untitled)").replace("[", "(").replace("]", ")")
     return f"- {star}[{title}]({rec.get('url')}) — {where}"
 
 
 def _section(heading: str, recs: list[dict]) -> list[str]:
-    # postings in the role first, then by employer and title
-    recs = sorted(recs, key=lambda r: (str(r.get("in_role")).lower() != "true", r.get("employer", ""), r.get("title", "")))
+    # in-role postings first, DFW before elsewhere, then by employer and title
+    recs = sorted(recs, key=lambda r: (str(r.get("in_role")).lower() != "true", not in_dfw(r.get("location", "")),
+                                       r.get("employer", ""), r.get("title", "")))
     lines = [f"## {heading} ({len(recs)})", ""]
     lines += [_line(r) for r in recs] if recs else ["_None today._"]
     return lines + [""]
@@ -43,7 +47,10 @@ def issue_body(date: str, status: dict, new: list[dict], removed: list[dict], si
     ]
     if site_url:
         head.append(f"- Site: {site_url}")
-    head += ["", "⭐ = in the watched role (finance analyst).", ""]
+    dfw_new = sum(in_dfw(r.get("location", "")) for r in new)
+    dfw_removed = sum(in_dfw(r.get("location", "")) for r in removed)
+    head.insert(5, f"- Dallas/Fort Worth: **{dfw_new}** new, **{dfw_removed}** removed")
+    head += ["", "⭐ = in the watched role (finance analyst) · 📍 = Dallas/Fort Worth Metroplex.", ""]
 
     lines = head + _section("New postings", new) + _section("Removed postings", removed)
     body = "\n".join(lines)

@@ -122,3 +122,33 @@ def test_iso_to_utc_date():
     assert iso_to_utc_date("2026-01-01") == "2026-01-01"
     assert iso_to_utc_date(None) == ""
     assert iso_to_utc_date("not a date") == ""
+
+
+OR = {"name": "ti", "employer": "Texas Instruments", "ats": "oracle", "host": "edbz.fa.us2.oraclecloud.com", "site": "CX"}
+
+
+def test_oracle():
+    payload = {"pages": [
+        {"items": [{"TotalJobsCount": 2, "requisitionList": [
+            {"Id": "25019826", "Title": "Financial Analyst", "PostedDate": "2026-11-10",
+             "PrimaryLocation": "Dallas, TX, United States", "Department": None, "Organization": "Finance"},
+            {"Id": "25010729", "Title": "Field Applications Engineer", "PostedDate": "2026-06-16",
+             "PrimaryLocation": "Shenzhen, Guangdong, China"},
+        ]}]},
+        {"items": [{"TotalJobsCount": 2, "requisitionList": []}]},
+    ]}
+    rows = normalize(OR, payload)
+    check_columns(rows)
+    assert len(rows) == 2
+    assert rows[0] == {
+        "posting_id": "ti:25019826",
+        "source": "ti",
+        "source_id": "25019826",
+        "employer": "Texas Instruments",
+        "title": "Financial Analyst",
+        "location": "Dallas, TX, United States",
+        "department": "Finance",
+        "posted_date": "2026-11-10",
+        "url": "https://edbz.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/25019826",
+    }
+    assert rows[1]["department"] == ""

@@ -1,0 +1,17 @@
+{
+  "region": "Dallas/Fort Worth Metroplex",
+  "about": "A location is in DFW when it names a city below together with TX or Texas, or names one of the 'standalone' places (unambiguous even without a state).",
+  "standalone": ["Dallas-Fort Worth", "Dallas/Fort Worth", "Dallas Fort Worth", "DFW", "Fort Worth", "Ft. Worth", "Ft Worth", "Las Colinas", "North Dallas", "Southlake"],
+  "cities": [
+    "Dallas", "Fort Worth", "Ft. Worth", "Ft Worth", "Arlington", "Plano", "Irving", "Las Colinas", "Garland", "Frisco", "McKinney",
+    "Grand Prairie", "Denton", "Mesquite", "Carrollton", "Richardson", "Lewisville", "Allen", "Flower Mound",
+    "North Richland Hills", "Mansfield", "Rowlett", "Euless", "DeSoto", "Grapevine", "Bedford", "Cedar Hill",
+    "Wylie", "Keller", "Coppell", "Rockwall", "Haltom City", "The Colony", "Burleson", "Hurst", "Little Elm",
+    "Lancaster", "Southlake", "Westlake", "Duncanville", "Farmers Branch", "Addison", "Prosper", "Celina",
+    "Midlothian", "Waxahachie", "Weatherford", "Colleyville", "Roanoke", "Sachse", "Murphy", "Forney", "Anna",
+    "Princeton", "Saginaw", "Watauga", "Benbrook", "Crowley", "Cleburne", "Terrell", "Balch Springs",
+    "University Park", "Highland Park", "Fairview", "Melissa", "Haslet", "Justin", "Argyle", "Corinth",
+    "Highland Village", "Trophy Club", "Aledo", "Ennis", "Red Oak", "Kennedale", "Seagoville", "Glenn Heights",
+    "Richland Hills", "Lake Dallas", "Granbury", "Royse City", "Alliance"
+  ]
+}

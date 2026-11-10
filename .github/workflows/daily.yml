@@ -1,0 +1,64 @@
+name: Daily run
+
+on:
+  schedule:
+    - cron: "23 11 * * *"   # main run, 11:23 UTC
+    - cron: "47 19 * * *"   # backup: only runs the pipeline if the main run did not happen that day
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-run
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - name: Tests
+        run: uv run pytest -q
+
+      - name: Fetch sources, build history, write status, open issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event.schedule }}" = "47 19 * * *" ]; then
+            uv run python -m job_watcher.run --if-missing
+          else
+            uv run python -m job_watcher.run
+          fi
+
+      - name: Check the history rebuilds identically from the raw files
+        run: |
+          cp data/history.csv /tmp/history.csv
+          uv run python -m job_watcher.history
+          cmp data/history.csv /tmp/history.csv
+
+      - name: Commit data
+        run: |
+          git config user.name "job-watcher-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+            exit 0
+          fi
+          git commit -m "Daily run $(date -u +%F)"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1
+
+  pages:
+    needs: run
+    uses: ./.github/workflows/pages.yml

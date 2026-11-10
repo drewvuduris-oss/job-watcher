@@ -78,10 +78,14 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--no-fetch", action="store_true", help="skip fetching; use the last run's source results")
     parser.add_argument("--no-issue", action="store_true", help="do not open a GitHub Issue")
+    parser.add_argument("--if-missing", action="store_true", help="do nothing if today already has raw files (backup run)")
     args = parser.parse_args(argv)
 
     now = datetime.now(timezone.utc)
     run_time, date = now.strftime("%Y-%m-%dT%H:%M:%SZ"), now.strftime("%Y-%m-%d")
+    if args.if_missing and (H.RAW_DIR / date).exists():
+        print(f"{date} already has a run; nothing to do")
+        return 0
 
     if args.no_fetch:
         prev = json.loads(STATUS_PATH.read_text()) if STATUS_PATH.exists() else {}

@@ -1,0 +1,14 @@
+[project]
+name = "job-watcher"
+version = "0.1.0"
+description = "Daily watcher of finance-analyst job postings across employer applicant tracking systems"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["requests>=2.32"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

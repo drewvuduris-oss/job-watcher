@@ -1,18 +1,18 @@
 {
-  "run_time": "2026-11-11T00:15:18Z",
+  "run_time": "2026-11-11T18:45:11Z",
   "run_date": "2026-11-11",
   "first_run_date": "2026-11-10",
   "days_with_success": 2,
-  "open": 17513,
-  "new_today": 337,
-  "removed_today": 244,
+  "open": 17578,
+  "new_today": 683,
+  "removed_today": 525,
   "sources": [
     {
       "name": "tyson",
       "employer": "Tyson Foods",
       "ats": "workday",
       "ok": true,
-      "count": 744,
+      "count": 741,
       "error": ""
     },
     {
@@ -20,7 +20,7 @@
       "employer": "Blackstone",
       "ats": "workday",
       "ok": true,
-      "count": 127,
+      "count": 129,
       "error": ""
     },
     {
@@ -28,7 +28,7 @@
       "employer": "Capital One",
       "ats": "workday",
       "ok": true,
-      "count": 2069,
+      "count": 2066,
       "error": ""
     },
     {
@@ -36,7 +36,7 @@
       "employer": "Fidelity Investments",
       "ats": "workday",
       "ok": true,
-      "count": 853,
+      "count": 863,
       "error": ""
     },
     {
@@ -44,7 +44,7 @@
       "employer": "Mastercard",
       "ats": "workday",
       "ok": true,
-      "count": 904,
+      "count": 898,
       "error": ""
     },
     {
@@ -52,7 +52,7 @@
       "employer": "State Street",
       "ats": "workday",
       "ok": true,
-      "count": 1173,
+      "count": 1190,
       "error": ""
     },
     {
@@ -60,7 +60,7 @@
       "employer": "AT&T",
       "ats": "workday",
       "ok": true,
-      "count": 1115,
+      "count": 1126,
       "error": ""
     },
     {
@@ -68,7 +68,7 @@
       "employer": "Alcon",
       "ats": "workday",
       "ok": true,
-      "count": 324,
+      "count": 335,
       "error": ""
     },
     {
@@ -100,7 +100,7 @@
       "employer": "Kimberly-Clark",
       "ats": "workday",
       "ok": true,
-      "count": 140,
+      "count": 135,
       "error": ""
     },
     {
@@ -108,7 +108,7 @@
       "employer": "McKesson",
       "ats": "workday",
       "ok": true,
-      "count": 670,
+      "count": 672,
       "error": ""
     },
     {
@@ -132,7 +132,7 @@
       "employer": "Toyota North America",
       "ats": "workday",
       "ok": true,
-      "count": 116,
+      "count": 115,
       "error": ""
     },
     {
@@ -140,7 +140,7 @@
       "employer": "Vistra",
       "ats": "workday",
       "ok": true,
-      "count": 152,
+      "count": 150,
       "error": ""
     },
     {
@@ -148,7 +148,7 @@
       "employer": "Vizient",
       "ats": "workday",
       "ok": true,
-      "count": 272,
+      "count": 275,
       "error": ""
     },
     {
@@ -156,7 +156,7 @@
       "employer": "Texas Instruments",
       "ats": "oracle",
       "ok": true,
-      "count": 911,
+      "count": 914,
       "error": ""
     },
     {
@@ -164,7 +164,7 @@
       "employer": "Tenet Healthcare",
       "ats": "oracle",
       "ok": true,
-      "count": 3020,
+      "count": 3023,
       "error": ""
     },
     {
@@ -172,7 +172,7 @@
       "employer": "Affirm",
       "ats": "greenhouse",
       "ok": true,
-      "count": 210,
+      "count": 207,
       "error": ""
     },
     {
@@ -180,7 +180,7 @@
       "employer": "Brex",
       "ats": "greenhouse",
       "ok": true,
-      "count": 279,
+      "count": 280,
       "error": ""
     },
     {
@@ -196,7 +196,7 @@
       "employer": "Coinbase",
       "ats": "greenhouse",
       "ok": true,
-      "count": 284,
+      "count": 277,
       "error": ""
     },
     {
@@ -212,7 +212,7 @@
       "employer": "Point72",
       "ats": "greenhouse",
       "ok": true,
-      "count": 196,
+      "count": 201,
       "error": ""
     },
     {
@@ -228,7 +228,7 @@
       "employer": "SoFi",
       "ats": "greenhouse",
       "ok": true,
-      "count": 50,
+      "count": 48,
       "error": ""
     },
     {
@@ -236,7 +236,7 @@
       "employer": "Stripe",
       "ats": "greenhouse",
       "ok": true,
-      "count": 778,
+      "count": 781,
       "error": ""
     },
     {
@@ -244,7 +244,7 @@
       "employer": "Toast",
       "ats": "greenhouse",
       "ok": true,
-      "count": 334,
+      "count": 340,
       "error": ""
     },
     {
@@ -252,7 +252,7 @@
       "employer": "Palantir",
       "ats": "lever",
       "ok": true,
-      "count": 304,
+      "count": 303,
       "error": ""
     },
     {
@@ -260,7 +260,7 @@
       "employer": "Match Group",
       "ats": "lever",
       "ok": true,
-      "count": 69,
+      "count": 67,
       "error": ""
     },
     {
@@ -276,7 +276,7 @@
       "employer": "Ramp",
       "ats": "ashby",
       "ok": true,
-      "count": 177,
+      "count": 176,
       "error": ""
     },
     {
@@ -284,7 +284,7 @@
       "employer": "ServiceNow",
       "ats": "smartrecruiters",
       "ok": true,
-      "count": 773,
+      "count": 788,
       "error": ""
     },
     {
@@ -292,7 +292,7 @@
       "employer": "Wise",
       "ats": "smartrecruiters",
       "ok": true,
-      "count": 432,
+      "count": 441,
       "error": ""
     }
   ]

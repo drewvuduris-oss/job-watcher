@@ -1,0 +1,293 @@
+{
+  "run_time": "2026-11-14T00:28:30Z",
+  "sources": [
+    {
+      "name": "tyson",
+      "employer": "Tyson Foods",
+      "ats": "workday",
+      "ok": false,
+      "count": 0,
+      "error": "SourceError: POST https://tysonfoods.wd5.myworkdayjobs.com/wday/cxs/tysonfoods/TSN/jobs failed: HTTP 521"
+    },
+    {
+      "name": "blackstone",
+      "employer": "Blackstone",
+      "ats": "workday",
+      "ok": true,
+      "count": 142,
+      "error": ""
+    },
+    {
+      "name": "capitalone",
+      "employer": "Capital One",
+      "ats": "workday",
+      "ok": true,
+      "count": 2059,
+      "error": ""
+    },
+    {
+      "name": "fidelity",
+      "employer": "Fidelity Investments",
+      "ats": "workday",
+      "ok": true,
+      "count": 898,
+      "error": ""
+    },
+    {
+      "name": "mastercard",
+      "employer": "Mastercard",
+      "ats": "workday",
+      "ok": true,
+      "count": 853,
+      "error": ""
+    },
+    {
+      "name": "statestreet",
+      "employer": "State Street",
+      "ats": "workday",
+      "ok": true,
+      "count": 1181,
+      "error": ""
+    },
+    {
+      "name": "att",
+      "employer": "AT&T",
+      "ats": "workday",
+      "ok": true,
+      "count": 1138,
+      "error": ""
+    },
+    {
+      "name": "alcon",
+      "employer": "Alcon",
+      "ats": "workday",
+      "ok": false,
+      "count": 0,
+      "error": "SourceError: POST https://alcon.wd5.myworkdayjobs.com/wday/cxs/alcon/careers_alcon/jobs failed: HTTP 521"
+    },
+    {
+      "name": "alkami",
+      "employer": "Alkami Technology",
+      "ats": "workday",
+      "ok": true,
+      "count": 45,
+      "error": ""
+    },
+    {
+      "name": "atmos",
+      "employer": "Atmos Energy",
+      "ats": "workday",
+      "ok": true,
+      "count": 43,
+      "error": ""
+    },
+    {
+      "name": "goosehead",
+      "employer": "Goosehead Insurance",
+      "ats": "workday",
+      "ok": true,
+      "count": 148,
+      "error": ""
+    },
+    {
+      "name": "kimberlyclark",
+      "employer": "Kimberly-Clark",
+      "ats": "workday",
+      "ok": true,
+      "count": 137,
+      "error": ""
+    },
+    {
+      "name": "mckesson",
+      "employer": "McKesson",
+      "ats": "workday",
+      "ok": true,
+      "count": 656,
+      "error": ""
+    },
+    {
+      "name": "sabre",
+      "employer": "Sabre",
+      "ats": "workday",
+      "ok": true,
+      "count": 94,
+      "error": ""
+    },
+    {
+      "name": "texascapital",
+      "employer": "Texas Capital",
+      "ats": "workday",
+      "ok": true,
+      "count": 105,
+      "error": ""
+    },
+    {
+      "name": "toyota",
+      "employer": "Toyota North America",
+      "ats": "workday",
+      "ok": true,
+      "count": 113,
+      "error": ""
+    },
+    {
+      "name": "vistra",
+      "employer": "Vistra",
+      "ats": "workday",
+      "ok": false,
+      "count": 0,
+      "error": "SourceError: POST https://vst.wd5.myworkdayjobs.com/wday/cxs/vst/vistra_careers/jobs failed: HTTP 521"
+    },
+    {
+      "name": "vizient",
+      "employer": "Vizient",
+      "ats": "workday",
+      "ok": true,
+      "count": 276,
+      "error": ""
+    },
+    {
+      "name": "ti",
+      "employer": "Texas Instruments",
+      "ats": "oracle",
+      "ok": true,
+      "count": 916,
+      "error": ""
+    },
+    {
+      "name": "tenet",
+      "employer": "Tenet Healthcare",
+      "ats": "oracle",
+      "ok": true,
+      "count": 2965,
+      "error": ""
+    },
+    {
+      "name": "affirm",
+      "employer": "Affirm",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 217,
+      "error": ""
+    },
+    {
+      "name": "brex",
+      "employer": "Brex",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 286,
+      "error": ""
+    },
+    {
+      "name": "carta",
+      "employer": "Carta",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 78,
+      "error": ""
+    },
+    {
+      "name": "coinbase",
+      "employer": "Coinbase",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 265,
+      "error": ""
+    },
+    {
+      "name": "janestreet",
+      "employer": "Jane Street",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 217,
+      "error": ""
+    },
+    {
+      "name": "point72",
+      "employer": "Point72",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 200,
+      "error": ""
+    },
+    {
+      "name": "robinhood",
+      "employer": "Robinhood",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 165,
+      "error": ""
+    },
+    {
+      "name": "sofi",
+      "employer": "SoFi",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 48,
+      "error": ""
+    },
+    {
+      "name": "stripe",
+      "employer": "Stripe",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 786,
+      "error": ""
+    },
+    {
+      "name": "toast",
+      "employer": "Toast",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 353,
+      "error": ""
+    },
+    {
+      "name": "palantir",
+      "employer": "Palantir",
+      "ats": "lever",
+      "ok": true,
+      "count": 302,
+      "error": ""
+    },
+    {
+      "name": "matchgroup",
+      "employer": "Match Group",
+      "ats": "lever",
+      "ok": true,
+      "count": 67,
+      "error": ""
+    },
+    {
+      "name": "plaid",
+      "employer": "Plaid",
+      "ats": "ashby",
+      "ok": true,
+      "count": 142,
+      "error": ""
+    },
+    {
+      "name": "ramp",
+      "employer": "Ramp",
+      "ats": "ashby",
+      "ok": true,
+      "count": 180,
+      "error": ""
+    },
+    {
+      "name": "servicenow",
+      "employer": "ServiceNow",
+      "ats": "smartrecruiters",
+      "ok": true,
+      "count": 820,
+      "error": ""
+    },
+    {
+      "name": "wise",
+      "employer": "Wise",
+      "ats": "smartrecruiters",
+      "ok": true,
+      "count": 443,
+      "error": ""
+    }
+  ]
+}

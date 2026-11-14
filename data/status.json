@@ -1,19 +1,19 @@
 {
-  "run_time": "2026-11-14T00:28:30Z",
+  "run_time": "2026-11-14T17:12:40Z",
   "run_date": "2026-11-14",
   "first_run_date": "2026-11-10",
   "days_with_success": 5,
-  "open": 17564,
-  "new_today": 154,
-  "removed_today": 145,
+  "open": 17536,
+  "new_today": 190,
+  "removed_today": 215,
   "sources": [
     {
       "name": "tyson",
       "employer": "Tyson Foods",
       "ats": "workday",
-      "ok": false,
-      "count": 0,
-      "error": "SourceError: POST https://tysonfoods.wd5.myworkdayjobs.com/wday/cxs/tysonfoods/TSN/jobs failed: HTTP 521"
+      "ok": true,
+      "count": 727,
+      "error": ""
     },
     {
       "name": "blackstone",
@@ -28,7 +28,7 @@
       "employer": "Capital One",
       "ats": "workday",
       "ok": true,
-      "count": 2059,
+      "count": 2061,
       "error": ""
     },
     {
@@ -36,7 +36,7 @@
       "employer": "Fidelity Investments",
       "ats": "workday",
       "ok": true,
-      "count": 898,
+      "count": 895,
       "error": ""
     },
     {
@@ -44,7 +44,7 @@
       "employer": "Mastercard",
       "ats": "workday",
       "ok": true,
-      "count": 853,
+      "count": 848,
       "error": ""
     },
     {
@@ -52,7 +52,7 @@
       "employer": "State Street",
       "ats": "workday",
       "ok": true,
-      "count": 1181,
+      "count": 1179,
       "error": ""
     },
     {
@@ -60,16 +60,16 @@
       "employer": "AT&T",
       "ats": "workday",
       "ok": true,
-      "count": 1138,
+      "count": 1130,
       "error": ""
     },
     {
       "name": "alcon",
       "employer": "Alcon",
       "ats": "workday",
-      "ok": false,
-      "count": 0,
-      "error": "SourceError: POST https://alcon.wd5.myworkdayjobs.com/wday/cxs/alcon/careers_alcon/jobs failed: HTTP 521"
+      "ok": true,
+      "count": 338,
+      "error": ""
     },
     {
       "name": "alkami",
@@ -108,7 +108,7 @@
       "employer": "McKesson",
       "ats": "workday",
       "ok": true,
-      "count": 656,
+      "count": 655,
       "error": ""
     },
     {
@@ -132,16 +132,16 @@
       "employer": "Toyota North America",
       "ats": "workday",
       "ok": true,
-      "count": 113,
+      "count": 109,
       "error": ""
     },
     {
       "name": "vistra",
       "employer": "Vistra",
       "ats": "workday",
-      "ok": false,
-      "count": 0,
-      "error": "SourceError: POST https://vst.wd5.myworkdayjobs.com/wday/cxs/vst/vistra_careers/jobs failed: HTTP 521"
+      "ok": true,
+      "count": 158,
+      "error": ""
     },
     {
       "name": "vizient",
@@ -156,7 +156,7 @@
       "employer": "Texas Instruments",
       "ats": "oracle",
       "ok": true,
-      "count": 916,
+      "count": 915,
       "error": ""
     },
     {
@@ -164,7 +164,7 @@
       "employer": "Tenet Healthcare",
       "ats": "oracle",
       "ok": true,
-      "count": 2965,
+      "count": 2964,
       "error": ""
     },
     {
@@ -244,7 +244,7 @@
       "employer": "Toast",
       "ats": "greenhouse",
       "ok": true,
-      "count": 353,
+      "count": 355,
       "error": ""
     },
     {
@@ -284,7 +284,7 @@
       "employer": "ServiceNow",
       "ats": "smartrecruiters",
       "ok": true,
-      "count": 820,
+      "count": 818,
       "error": ""
     },
     {
@@ -292,7 +292,7 @@
       "employer": "Wise",
       "ats": "smartrecruiters",
       "ok": true,
-      "count": 443,
+      "count": 441,
       "error": ""
     }
   ]

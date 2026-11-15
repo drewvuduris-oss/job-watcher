@@ -1,18 +1,18 @@
 {
-  "run_time": "2026-11-14T17:12:40Z",
-  "run_date": "2026-11-14",
+  "run_time": "2026-11-15T17:49:50Z",
+  "run_date": "2026-11-15",
   "first_run_date": "2026-11-10",
-  "days_with_success": 5,
-  "open": 17536,
-  "new_today": 190,
-  "removed_today": 215,
+  "days_with_success": 6,
+  "open": 17473,
+  "new_today": 11,
+  "removed_today": 75,
   "sources": [
     {
       "name": "tyson",
       "employer": "Tyson Foods",
       "ats": "workday",
       "ok": true,
-      "count": 727,
+      "count": 716,
       "error": ""
     },
     {
@@ -36,7 +36,7 @@
       "employer": "Fidelity Investments",
       "ats": "workday",
       "ok": true,
-      "count": 895,
+      "count": 889,
       "error": ""
     },
     {
@@ -44,7 +44,7 @@
       "employer": "Mastercard",
       "ats": "workday",
       "ok": true,
-      "count": 848,
+      "count": 844,
       "error": ""
     },
     {
@@ -52,7 +52,7 @@
       "employer": "State Street",
       "ats": "workday",
       "ok": true,
-      "count": 1179,
+      "count": 1169,
       "error": ""
     },
     {
@@ -60,7 +60,7 @@
       "employer": "AT&T",
       "ats": "workday",
       "ok": true,
-      "count": 1130,
+      "count": 1109,
       "error": ""
     },
     {
@@ -68,7 +68,7 @@
       "employer": "Alcon",
       "ats": "workday",
       "ok": true,
-      "count": 338,
+      "count": 336,
       "error": ""
     },
     {
@@ -100,7 +100,7 @@
       "employer": "Kimberly-Clark",
       "ats": "workday",
       "ok": true,
-      "count": 137,
+      "count": 136,
       "error": ""
     },
     {
@@ -132,7 +132,7 @@
       "employer": "Toyota North America",
       "ats": "workday",
       "ok": true,
-      "count": 109,
+      "count": 104,
       "error": ""
     },
     {
@@ -156,7 +156,7 @@
       "employer": "Texas Instruments",
       "ats": "oracle",
       "ok": true,
-      "count": 915,
+      "count": 914,
       "error": ""
     },
     {
@@ -236,7 +236,7 @@
       "employer": "Stripe",
       "ats": "greenhouse",
       "ok": true,
-      "count": 786,
+      "count": 785,
       "error": ""
     },
     {
@@ -244,7 +244,7 @@
       "employer": "Toast",
       "ats": "greenhouse",
       "ok": true,
-      "count": 355,
+      "count": 354,
       "error": ""
     },
     {
@@ -260,7 +260,7 @@
       "employer": "Match Group",
       "ats": "lever",
       "ok": true,
-      "count": 67,
+      "count": 69,
       "error": ""
     },
     {
@@ -284,7 +284,7 @@
       "employer": "ServiceNow",
       "ats": "smartrecruiters",
       "ok": true,
-      "count": 818,
+      "count": 816,
       "error": ""
     },
     {

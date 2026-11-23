@@ -1,11 +1,11 @@
 {
-  "run_time": "2026-11-22T18:34:31Z",
-  "run_date": "2026-11-22",
+  "run_time": "2026-11-23T00:28:33Z",
+  "run_date": "2026-11-23",
   "first_run_date": "2026-11-10",
-  "days_with_success": 13,
-  "open": 17160,
-  "new_today": 16,
-  "removed_today": 70,
+  "days_with_success": 14,
+  "open": 17150,
+  "new_today": 1,
+  "removed_today": 11,
   "sources": [
     {
       "name": "tyson",
@@ -44,7 +44,7 @@
       "employer": "Mastercard",
       "ats": "workday",
       "ok": true,
-      "count": 714,
+      "count": 706,
       "error": ""
     },
     {
@@ -52,7 +52,7 @@
       "employer": "State Street",
       "ats": "workday",
       "ok": true,
-      "count": 1150,
+      "count": 1148,
       "error": ""
     },
     {
@@ -236,7 +236,7 @@
       "employer": "Stripe",
       "ats": "greenhouse",
       "ok": true,
-      "count": 777,
+      "count": 778,
       "error": ""
     },
     {
@@ -284,7 +284,7 @@
       "employer": "ServiceNow",
       "ats": "smartrecruiters",
       "ok": true,
-      "count": 1000,
+      "count": 999,
       "error": ""
     },
     {

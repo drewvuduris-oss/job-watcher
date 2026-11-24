@@ -1,0 +1,293 @@
+{
+  "run_time": "2026-11-24T04:26:58Z",
+  "sources": [
+    {
+      "name": "tyson",
+      "employer": "Tyson Foods",
+      "ats": "workday",
+      "ok": true,
+      "count": 750,
+      "error": ""
+    },
+    {
+      "name": "blackstone",
+      "employer": "Blackstone",
+      "ats": "workday",
+      "ok": true,
+      "count": 138,
+      "error": ""
+    },
+    {
+      "name": "capitalone",
+      "employer": "Capital One",
+      "ats": "workday",
+      "ok": true,
+      "count": 2043,
+      "error": ""
+    },
+    {
+      "name": "fidelity",
+      "employer": "Fidelity Investments",
+      "ats": "workday",
+      "ok": true,
+      "count": 874,
+      "error": ""
+    },
+    {
+      "name": "mastercard",
+      "employer": "Mastercard",
+      "ats": "workday",
+      "ok": true,
+      "count": 697,
+      "error": ""
+    },
+    {
+      "name": "statestreet",
+      "employer": "State Street",
+      "ats": "workday",
+      "ok": true,
+      "count": 1163,
+      "error": ""
+    },
+    {
+      "name": "att",
+      "employer": "AT&T",
+      "ats": "workday",
+      "ok": true,
+      "count": 1141,
+      "error": ""
+    },
+    {
+      "name": "alcon",
+      "employer": "Alcon",
+      "ats": "workday",
+      "ok": true,
+      "count": 336,
+      "error": ""
+    },
+    {
+      "name": "alkami",
+      "employer": "Alkami Technology",
+      "ats": "workday",
+      "ok": true,
+      "count": 42,
+      "error": ""
+    },
+    {
+      "name": "atmos",
+      "employer": "Atmos Energy",
+      "ats": "workday",
+      "ok": true,
+      "count": 44,
+      "error": ""
+    },
+    {
+      "name": "goosehead",
+      "employer": "Goosehead Insurance",
+      "ats": "workday",
+      "ok": true,
+      "count": 151,
+      "error": ""
+    },
+    {
+      "name": "kimberlyclark",
+      "employer": "Kimberly-Clark",
+      "ats": "workday",
+      "ok": true,
+      "count": 140,
+      "error": ""
+    },
+    {
+      "name": "mckesson",
+      "employer": "McKesson",
+      "ats": "workday",
+      "ok": true,
+      "count": 695,
+      "error": ""
+    },
+    {
+      "name": "sabre",
+      "employer": "Sabre",
+      "ats": "workday",
+      "ok": true,
+      "count": 95,
+      "error": ""
+    },
+    {
+      "name": "texascapital",
+      "employer": "Texas Capital",
+      "ats": "workday",
+      "ok": true,
+      "count": 105,
+      "error": ""
+    },
+    {
+      "name": "toyota",
+      "employer": "Toyota North America",
+      "ats": "workday",
+      "ok": true,
+      "count": 138,
+      "error": ""
+    },
+    {
+      "name": "vistra",
+      "employer": "Vistra",
+      "ats": "workday",
+      "ok": true,
+      "count": 169,
+      "error": ""
+    },
+    {
+      "name": "vizient",
+      "employer": "Vizient",
+      "ats": "workday",
+      "ok": true,
+      "count": 273,
+      "error": ""
+    },
+    {
+      "name": "ti",
+      "employer": "Texas Instruments",
+      "ats": "oracle",
+      "ok": true,
+      "count": 928,
+      "error": ""
+    },
+    {
+      "name": "tenet",
+      "employer": "Tenet Healthcare",
+      "ats": "oracle",
+      "ok": true,
+      "count": 2554,
+      "error": ""
+    },
+    {
+      "name": "affirm",
+      "employer": "Affirm",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 221,
+      "error": ""
+    },
+    {
+      "name": "brex",
+      "employer": "Brex",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 263,
+      "error": ""
+    },
+    {
+      "name": "carta",
+      "employer": "Carta",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 80,
+      "error": ""
+    },
+    {
+      "name": "coinbase",
+      "employer": "Coinbase",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 249,
+      "error": ""
+    },
+    {
+      "name": "janestreet",
+      "employer": "Jane Street",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 216,
+      "error": ""
+    },
+    {
+      "name": "point72",
+      "employer": "Point72",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 201,
+      "error": ""
+    },
+    {
+      "name": "robinhood",
+      "employer": "Robinhood",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 159,
+      "error": ""
+    },
+    {
+      "name": "sofi",
+      "employer": "SoFi",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 54,
+      "error": ""
+    },
+    {
+      "name": "stripe",
+      "employer": "Stripe",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 771,
+      "error": ""
+    },
+    {
+      "name": "toast",
+      "employer": "Toast",
+      "ats": "greenhouse",
+      "ok": true,
+      "count": 312,
+      "error": ""
+    },
+    {
+      "name": "palantir",
+      "employer": "Palantir",
+      "ats": "lever",
+      "ok": true,
+      "count": 306,
+      "error": ""
+    },
+    {
+      "name": "matchgroup",
+      "employer": "Match Group",
+      "ats": "lever",
+      "ok": true,
+      "count": 73,
+      "error": ""
+    },
+    {
+      "name": "plaid",
+      "employer": "Plaid",
+      "ats": "ashby",
+      "ok": true,
+      "count": 145,
+      "error": ""
+    },
+    {
+      "name": "ramp",
+      "employer": "Ramp",
+      "ats": "ashby",
+      "ok": true,
+      "count": 180,
+      "error": ""
+    },
+    {
+      "name": "servicenow",
+      "employer": "ServiceNow",
+      "ats": "smartrecruiters",
+      "ok": true,
+      "count": 1001,
+      "error": ""
+    },
+    {
+      "name": "wise",
+      "employer": "Wise",
+      "ats": "smartrecruiters",
+      "ok": true,
+      "count": 423,
+      "error": ""
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 {
-  "run_time": "2026-11-26T20:15:43Z",
-  "run_date": "2026-11-26",
+  "run_time": "2026-11-27T02:24:31Z",
+  "run_date": "2026-11-27",
   "first_run_date": "2026-11-10",
-  "days_with_success": 17,
-  "open": 16975,
-  "new_today": 154,
-  "removed_today": 230,
+  "days_with_success": 18,
+  "open": 16957,
+  "new_today": 3,
+  "removed_today": 22,
   "sources": [
     {
       "name": "tyson",
@@ -28,7 +28,7 @@
       "employer": "Capital One",
       "ats": "workday",
       "ok": true,
-      "count": 2051,
+      "count": 2050,
       "error": ""
     },
     {
@@ -44,7 +44,7 @@
       "employer": "Mastercard",
       "ats": "workday",
       "ok": true,
-      "count": 698,
+      "count": 695,
       "error": ""
     },
     {
@@ -52,7 +52,7 @@
       "employer": "State Street",
       "ats": "workday",
       "ok": true,
-      "count": 1153,
+      "count": 1147,
       "error": ""
     },
     {
@@ -100,7 +100,7 @@
       "employer": "Kimberly-Clark",
       "ats": "workday",
       "ok": true,
-      "count": 137,
+      "count": 135,
       "error": ""
     },
     {
@@ -108,7 +108,7 @@
       "employer": "McKesson",
       "ats": "workday",
       "ok": true,
-      "count": 697,
+      "count": 698,
       "error": ""
     },
     {
@@ -180,7 +180,7 @@
       "employer": "Brex",
       "ats": "greenhouse",
       "ok": true,
-      "count": 270,
+      "count": 266,
       "error": ""
     },
     {
@@ -220,7 +220,7 @@
       "employer": "Robinhood",
       "ats": "greenhouse",
       "ok": true,
-      "count": 162,
+      "count": 161,
       "error": ""
     },
     {
@@ -236,7 +236,7 @@
       "employer": "Stripe",
       "ats": "greenhouse",
       "ok": true,
-      "count": 768,
+      "count": 767,
       "error": ""
     },
     {
@@ -292,7 +292,7 @@
       "employer": "Wise",
       "ats": "smartrecruiters",
       "ok": true,
-      "count": 413,
+      "count": 412,
       "error": ""
     }
   ]

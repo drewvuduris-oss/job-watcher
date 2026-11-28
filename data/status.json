@@ -1,18 +1,18 @@
 {
-  "run_time": "2026-11-27T20:02:20Z",
-  "run_date": "2026-11-27",
+  "run_time": "2026-11-28T02:10:06Z",
+  "run_date": "2026-11-28",
   "first_run_date": "2026-11-10",
-  "days_with_success": 18,
+  "days_with_success": 19,
   "open": 16845,
-  "new_today": 83,
-  "removed_today": 238,
+  "new_today": 7,
+  "removed_today": 9,
   "sources": [
     {
       "name": "tyson",
       "employer": "Tyson Foods",
       "ats": "workday",
       "ok": true,
-      "count": 711,
+      "count": 710,
       "error": ""
     },
     {
@@ -28,7 +28,7 @@
       "employer": "Capital One",
       "ats": "workday",
       "ok": true,
-      "count": 2052,
+      "count": 2053,
       "error": ""
     },
     {
@@ -52,7 +52,7 @@
       "employer": "State Street",
       "ats": "workday",
       "ok": true,
-      "count": 1142,
+      "count": 1140,
       "error": ""
     },
     {
@@ -60,7 +60,7 @@
       "employer": "AT&T",
       "ats": "workday",
       "ok": true,
-      "count": 1142,
+      "count": 1141,
       "error": ""
     },
     {
@@ -108,7 +108,7 @@
       "employer": "McKesson",
       "ats": "workday",
       "ok": true,
-      "count": 691,
+      "count": 693,
       "error": ""
     },
     {
@@ -220,7 +220,7 @@
       "employer": "Robinhood",
       "ats": "greenhouse",
       "ok": true,
-      "count": 161,
+      "count": 162,
       "error": ""
     },
     {
@@ -236,7 +236,7 @@
       "employer": "Stripe",
       "ats": "greenhouse",
       "ok": true,
-      "count": 770,
+      "count": 771,
       "error": ""
     },
     {
@@ -284,7 +284,7 @@
       "employer": "ServiceNow",
       "ats": "smartrecruiters",
       "ok": true,
-      "count": 969,
+      "count": 968,
       "error": ""
     },
     {
